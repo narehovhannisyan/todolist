@@ -8,8 +8,18 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITextFieldDelegate {
 
+   
+    
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var yourbutton: UIButton!
+    
+    @IBAction func AddButton(_ sender: Any) {
+        items.append(self.textField.text!)
+        textField.text = ""
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,6 +30,14 @@ class SecondViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.AddButton(yourbutton)
+        textField.resignFirstResponder()
+        return true
+    }
 
-}
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    }
 
